@@ -8,11 +8,16 @@ import org.glassfish.jersey.servlet.ServletContainer;
 
 public class App {
     public App() throws Exception {
+        this.port = Integer.parseInt(System.getProperty("port", "2222"));
+        startServer();
+    }
+
+    private void startServer() throws Exception {
         ResourceConfig config = new ResourceConfig();
         config.packages("com.ddk.karthi");
         ServletHolder servlet = new ServletHolder(new ServletContainer(config));
 
-        Server server = new Server(2222);
+        Server server = new Server(this.port);
         ServletContextHandler context = new ServletContextHandler(server, "/*");
         context.addServlet(servlet, "/*");
 
@@ -23,4 +28,6 @@ public class App {
             server.destroy();
         }
     }
+
+    private Integer port;
 }

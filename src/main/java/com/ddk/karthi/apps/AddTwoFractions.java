@@ -23,8 +23,8 @@ public class AddTwoFractions {
     }
 
     public void add() throws Exception {
-        fraction1 = parseFractionString(this.f1);
-        fraction2 = parseFractionString(this.f2);
+        fraction1 = parseFractionString(getFraction1());
+        fraction2 = parseFractionString(getFraction2());
 
         this.sum = new Integer[2];
         if ( this.fraction1[1] == this.fraction2[1] ) {
@@ -36,10 +36,10 @@ public class AddTwoFractions {
                     this.fraction2[0] * (this.sum[1] / this.fraction2[1]);
         }
         int g = gcd(this.sum[0], this.sum[1]);
-        if ( (this.sum[0] % g == 0) && (this.sum[1] % g == 0) ) {
-            this.sum[0] /= g;
-            this.sum[1] /= g;
-        }
+        //if ( (this.sum[0] % g == 0) && (this.sum[1] % g == 0) ) {
+        this.sum[0] /= g;
+        this.sum[1] /= g;
+        //}
     }
 
     private int gcd(int a, int b) {

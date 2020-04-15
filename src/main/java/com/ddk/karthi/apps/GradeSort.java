@@ -10,9 +10,12 @@ import java.util.logging.Logger;
 public class GradeSort {
     public void sortGrades() {
         init();
+        if ( this.unsortedGrades == null )
+            this.unsortedGrades = new ArrayList<>();
+        printArray(getUnsortedGrades().stream().toArray(String[]::new));
         List<String> validGrades = new ArrayList<>();
-        for ( String s : this.unsortedGrades ) {
-            if ( gradeOrder.containsKey(s) )
+        for ( String s : getUnsortedGrades() ) {
+            if ( getGradeOrder().containsKey(s) )
                 validGrades.add(s);
         }
         if ( validGrades.size() > 0 ) {
@@ -22,6 +25,9 @@ public class GradeSort {
             printArray(validGradeArray);
             this.sortedGrades = Arrays.asList(validGradeArray);
         }
+        if ( this.sortedGrades == null )
+            this.sortedGrades = new ArrayList<>();
+        printArray(getSortedGrades().stream().toArray(String[]::new));
     }
 
     @XmlElement(name = "getSortedGrades")
@@ -32,6 +38,10 @@ public class GradeSort {
     @XmlElement(name = "getUnsortedGrades")
     public List<String> getUnsortedGrades() {
         return this.unsortedGrades;
+    }
+
+    public Map<String, Integer> getGradeOrder() {
+        return this.gradeOrder;
     }
 
     private void init() {
@@ -79,7 +89,7 @@ public class GradeSort {
     private void merge(String[] a, String[] l, String[] r, int left, int right) {
         int i = 0, j = 0, k = 0;
         while (i < left && j < right) {
-            if (gradeOrder.get(l[i]) <= gradeOrder.get(r[j])) {
+            if (getGradeOrder().get(l[i]) <= getGradeOrder().get(r[j])) {
                 a[k++] = l[i++];
             }
             else {

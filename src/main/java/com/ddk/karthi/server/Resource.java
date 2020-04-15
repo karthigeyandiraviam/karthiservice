@@ -24,7 +24,7 @@ public class Resource {
     @GET
     @Path("/health")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response health() throws Exception {
+    public Response health() {
         try {
             LOGGER.log(Level.INFO, "Entering health()");
             return Response.ok("OK").build();
@@ -65,7 +65,7 @@ public class Resource {
 
             if (version == null) {
                 // we could not compute the version so use a blank
-                version = "UNABLE TO FIND VERSION";
+                version = "1.0";
             }
             return Response.ok(version).build();
         } finally {

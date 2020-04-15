@@ -23,7 +23,8 @@ public class CreditCard {
 
         int firstDigit = this.creditCardStr.charAt(0) - '0';
         int secondDigit = this.creditCardStr.charAt(1) - '0';
-        if ( ! (firstDigit == 4 || firstDigit == 5
+        if ( ! (firstDigit == 4
+                || firstDigit == 5
                 || firstDigit == 6
                 || (firstDigit == 3 && secondDigit == 7)) )
             return false;
