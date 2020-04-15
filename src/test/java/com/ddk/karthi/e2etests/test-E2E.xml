@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="test-E2E" verbose="1" parallel="false">
+	<test name="KarthiService-E2E">
+		<groups>
+			<run>
+				<include name="Functional"/>
+			</run>
+		</groups>
+		<classes>
+			<class name="com.ddk.karthi.e2e.E2ETests"/>
+		</classes>
+	</test>
+</suite>

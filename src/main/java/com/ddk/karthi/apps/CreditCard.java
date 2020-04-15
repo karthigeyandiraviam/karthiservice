@@ -1,21 +1,30 @@
 package com.ddk.karthi.apps;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.List;
 
+@XmlRootElement(name = "CreditCard")
 public class CreditCard {
-    public CreditCard(String creditCardStr) {
-        this.creditCardStr = creditCardStr;
+    @XmlElement(name = "validateCC")
+    public void validateCC() {
         this.isValidCreditCard = validate();
     }
 
-    boolean validate() {
+    @XmlElement(name = "isValidCreditCard")
+    public Boolean isValidCreditCard() {
+        return this.isValidCreditCard;
+    }
+
+    private boolean validate() {
         if ( ! (this.creditCardStr.length() > 14 && this.creditCardStr.length() < 17) )
             return false;
 
         int firstDigit = this.creditCardStr.charAt(0) - '0';
         int secondDigit = this.creditCardStr.charAt(1) - '0';
-        if ( ! (firstDigit == 4 || firstDigit == 5
+        if ( ! (firstDigit == 4
+                || firstDigit == 5
                 || firstDigit == 6
                 || (firstDigit == 3 && secondDigit == 7)) )
             return false;
@@ -59,6 +68,8 @@ public class CreditCard {
         return false;
     }
 
+    @XmlElement(name = "isValidCreditCard")
     Boolean isValidCreditCard;
+    @XmlElement(name = "creditCardStr")
     String creditCardStr;
 }
